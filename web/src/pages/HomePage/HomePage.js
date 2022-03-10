@@ -1,6 +1,7 @@
 import { MetaTags } from '@redwoodjs/web'
+import BookshelfCell from 'src/components/BookshelfCell'
 
-// !!!!!!!!!!!!!!!!!! currently at: https://learn.redwoodjs.com/docs/tutorial/a-second-page-and-a-link
+// !!!!!!!!!!!!!!!!!! currently at: https://learn.redwoodjs.com/docs/tutorial/side-quest-how-redwood-works-with-data
 
 const HomePage = () => {
   return (
@@ -13,6 +14,7 @@ const HomePage = () => {
       />
 
       <h1>Reading List</h1>
+      <BookshelfCell />
     </>
   )
 }
