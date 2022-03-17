@@ -1,8 +1,8 @@
 import { MetaTags } from '@redwoodjs/web'
+import { Link, routes } from '@redwoodjs/router'
 import BookshelfCell from 'src/components/BookshelfCell'
 
-// !!!!!!!!!!!!!!!!!! currently at: https://learn.redwoodjs.com/docs/tutorial/side-quest-how-redwood-works-with-data
-
+// !!!!!!!!!!!!!!!!!! currently at: https://redwoodjs.com/docs/schema-relations - https://learn.redwoodjs.com/docs/tutorial2/adding-comments-to-the-schema
 const HomePage = () => {
   return (
     <>
@@ -15,6 +15,7 @@ const HomePage = () => {
 
       <h1>Reading List</h1>
       <BookshelfCell />
+      <Link to={routes.books()}>Admin</Link>
     </>
   )
 }
