@@ -9,6 +9,14 @@ generator client {
 }
 
 model Book {
+  id         Int      @id @default(autoincrement())
+  title      String
+  category   Category @relation(fields: [categoryId], references: [id])
+  categoryId Int
+}
+
+model Category {
   id    Int    @id @default(autoincrement())
-  title String
+  name  String
+  books Book[]
 }

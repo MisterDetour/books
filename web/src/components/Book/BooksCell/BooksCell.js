@@ -7,6 +7,9 @@ export const QUERY = gql`
     books {
       id
       title
+      category {
+        name
+      }
     }
   }
 `

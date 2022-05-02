@@ -9,6 +9,14 @@ export const QUERY = gql`
     book: book(id: $id) {
       id
       title
+      categoryId
+      category {
+        name
+      }
+    }
+    categories {
+      name
+      id
     }
   }
 `
@@ -17,6 +25,7 @@ const UPDATE_BOOK_MUTATION = gql`
     updateBook(id: $id, input: $input) {
       id
       title
+      categoryId
     }
   }
 `
@@ -27,7 +36,7 @@ export const Failure = ({ error }) => (
   <div className="rw-cell-error">{error.message}</div>
 )
 
-export const Success = ({ book }) => {
+export const Success = ({ book, categories }) => {
   const [updateBook, { loading, error }] = useMutation(UPDATE_BOOK_MUTATION, {
     onCompleted: () => {
       toast.success('Book updated')
@@ -39,7 +48,12 @@ export const Success = ({ book }) => {
   })
 
   const onSave = (input, id) => {
-    updateBook({ variables: { id, input } })
+    const castInput = Object.assign(input, {
+      categoryId: parseInt(input.categoryId),
+    })
+    //console.log(castInput)
+    // TODO: Generate category admin
+    updateBook({ variables: { id, input: castInput } })
   }
 
   return (
@@ -48,7 +62,13 @@ export const Success = ({ book }) => {
         <h2 className="rw-heading rw-heading-secondary">Edit Book {book.id}</h2>
       </header>
       <div className="rw-segment-main">
-        <BookForm book={book} onSave={onSave} error={error} loading={loading} />
+        <BookForm
+          book={book}
+          categories={categories}
+          onSave={onSave}
+          error={error}
+          loading={loading}
+        />
       </div>
     </div>
   )

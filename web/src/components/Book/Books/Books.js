@@ -66,6 +66,7 @@ const BooksList = ({ books }) => {
           <tr>
             <th>Id</th>
             <th>Title</th>
+            <th>Category</th>
             <th>&nbsp;</th>
           </tr>
         </thead>
@@ -74,6 +75,7 @@ const BooksList = ({ books }) => {
             <tr key={book.id}>
               <td>{truncate(book.id)}</td>
               <td>{truncate(book.title)}</td>
+              <td>{truncate(book.category.name)}</td>
               <td>
                 <nav className="rw-table-actions">
                   <Link

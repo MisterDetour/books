@@ -23,7 +23,10 @@ const NewBook = () => {
   })
 
   const onSave = (input) => {
-    createBook({ variables: { input } })
+    const castInput = Object.assign(input, {
+      categoryId: parseInt(input.categoryId),
+    })
+    createBook({ variables: { input: castInput } })
   }
 
   return (

@@ -4,6 +4,8 @@ import {
   FieldError,
   Label,
   TextField,
+  NumberField,
+  SelectField,
   Submit,
 } from '@redwoodjs/forms'
 
@@ -44,6 +46,23 @@ const BookForm = (props) => {
         />
 
         <FieldError name="title" className="rw-field-error" />
+
+        <Label
+          name="categoryId"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Category
+        </Label>
+        <SelectField name="categoryId" defaultValue={props.book?.category.name}>
+          {props.categories.map((category) => (
+            <option key={category.id} value={category.id}>
+              {category.name}
+            </option>
+          ))}
+        </SelectField>
+
+        <FieldError name="categoryId" className="rw-field-error" />
 
         <div className="rw-button-group">
           <Submit disabled={props.loading} className="rw-button rw-button-blue">

@@ -5,6 +5,7 @@ export const QUERY = gql`
     book: book(id: $id) {
       id
       title
+      categoryId
     }
   }
 `

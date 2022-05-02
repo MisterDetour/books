@@ -65,6 +65,10 @@ const Book = ({ book }) => {
               <th>Title</th>
               <td>{book.title}</td>
             </tr>
+            <tr>
+              <th>Category id</th>
+              <td>{book.categoryId}</td>
+            </tr>
           </tbody>
         </table>
       </div>

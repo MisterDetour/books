@@ -16,7 +16,6 @@ const BooksLayout = ({ children }) => {
         </Link>
       </header>
       <main className="rw-main">{children}</main>
-      <Link to={routes.home()}>Home</Link>
     </div>
   )
 }

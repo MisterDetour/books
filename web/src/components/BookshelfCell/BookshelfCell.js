@@ -3,6 +3,9 @@ export const QUERY = gql`
     bookshelf: books {
       id
       title
+      category {
+        name
+      }
     }
   }
 `
@@ -19,7 +22,11 @@ export const Success = ({ bookshelf }) => {
   return (
     <ul>
       {bookshelf.map((book) => {
-        return <li key={book.id}>{book.title}</li>
+        return (
+          <li key={book.id}>
+            {book.title} - {book.category.name}
+          </li>
+        )
       })}
     </ul>
   )

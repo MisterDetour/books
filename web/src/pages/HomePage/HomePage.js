@@ -2,7 +2,7 @@ import { MetaTags } from '@redwoodjs/web'
 import { Link, routes } from '@redwoodjs/router'
 import BookshelfCell from 'src/components/BookshelfCell'
 
-// !!!!!!!!!!!!!!!!!! currently at: https://redwoodjs.com/docs/schema-relations - https://learn.redwoodjs.com/docs/tutorial2/adding-comments-to-the-schema
+// !!!!!!!!!!!!!!!!!! currently at: https://community.redwoodjs.com/t/prisma-beta-2-and-rwjs-limited-generator-support-for-relations-with-workarounds/361 - https://learn.redwoodjs.com/docs/tutorial2/adding-comments-to-the-schema
 const HomePage = () => {
   return (
     <>

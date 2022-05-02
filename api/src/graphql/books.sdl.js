@@ -2,6 +2,8 @@ export const schema = gql`
   type Book {
     id: Int!
     title: String!
+    category: Category!
+    categoryId: Int!
   }
 
   type Query {
@@ -11,10 +13,12 @@ export const schema = gql`
 
   input CreateBookInput {
     title: String!
+    categoryId: Int
   }
 
   input UpdateBookInput {
     title: String
+    categoryId: Int
   }
 
   type Mutation {
