@@ -1,7 +1,7 @@
 import { Link, routes } from '@redwoodjs/router'
 import { Toaster } from '@redwoodjs/web/toast'
 
-const BooksLayout = ({ children }) => {
+const CategoriesLayout = ({ children }) => {
   return (
     <div className="rw-scaffold">
       <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
@@ -10,12 +10,12 @@ const BooksLayout = ({ children }) => {
           <Link to={routes.home()} className="rw-link">
             Home
           </Link>
-          <Link to={routes.books()} className="rw-link">
-            Books
+          <Link to={routes.categories()} className="rw-link">
+            Categories
           </Link>
         </h1>
-        <Link to={routes.newBook()} className="rw-button rw-button-green">
-          <div className="rw-button-icon">+</div> New Book
+        <Link to={routes.newCategory()} className="rw-button rw-button-green">
+          <div className="rw-button-icon">+</div> New Category
         </Link>
       </header>
       <main className="rw-main">{children}</main>
@@ -23,4 +23,4 @@ const BooksLayout = ({ children }) => {
   )
 }
 
-export default BooksLayout
+export default CategoriesLayout

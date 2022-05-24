@@ -51,8 +51,6 @@ export const Success = ({ book, categories }) => {
     const castInput = Object.assign(input, {
       categoryId: parseInt(input.categoryId),
     })
-    //console.log(castInput)
-    // TODO: Generate category admin
     updateBook({ variables: { id, input: castInput } })
   }
 

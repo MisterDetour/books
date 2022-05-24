@@ -1,7 +1,7 @@
-import NewBook from 'src/components/Book/NewBook'
+import NewBookCell from 'src/components/Book/NewBookCell'
 
 const NewBookPage = () => {
-  return <NewBook />
+  return <NewBookCell />
 }
 
 export default NewBookPage

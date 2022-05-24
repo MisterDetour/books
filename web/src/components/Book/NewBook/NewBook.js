@@ -11,7 +11,7 @@ const CREATE_BOOK_MUTATION = gql`
   }
 `
 
-const NewBook = () => {
+const NewBook = (props) => {
   const [createBook, { loading, error }] = useMutation(CREATE_BOOK_MUTATION, {
     onCompleted: () => {
       toast.success('Book created')
@@ -35,7 +35,12 @@ const NewBook = () => {
         <h2 className="rw-heading rw-heading-secondary">New Book</h2>
       </header>
       <div className="rw-segment-main">
-        <BookForm onSave={onSave} loading={loading} error={error} />
+        <BookForm
+          onSave={onSave}
+          loading={loading}
+          error={error}
+          categories={props.categories}
+        />
       </div>
     </div>
   )

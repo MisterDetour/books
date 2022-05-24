@@ -1,3 +1,6 @@
+import { useContext } from 'react'
+import { BookshelfContext } from 'src/providers/context/BookshelfContext'
+
 export const QUERY = gql`
   query BookshelfQuery {
     bookshelf: books {
@@ -5,6 +8,7 @@ export const QUERY = gql`
       title
       category {
         name
+        id
       }
     }
   }
@@ -19,15 +23,19 @@ export const Failure = ({ error }) => (
 )
 
 export const Success = ({ bookshelf }) => {
+  const bookshelfSettings = useContext(BookshelfContext)
+
   return (
     <ul>
-      {bookshelf.map((book) => {
-        return (
-          <li key={book.id}>
-            {book.title} - {book.category.name}
-          </li>
-        )
-      })}
+      {bookshelf
+        .filter((book) => book.category.id == bookshelfSettings[0].category)
+        .map((book) => {
+          return (
+            <li key={book.id}>
+              {book.title} - {book.category.name}
+            </li>
+          )
+        })}
     </ul>
   )
 }
