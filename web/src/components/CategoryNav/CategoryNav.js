@@ -9,6 +9,9 @@ const CategoryNav = ({ categories }) => {
 
   return (
     <div className="cat-nav">
+      <div>
+        <button onClick={() => filterBooks(0)}>All</button>
+      </div>
       {categories.map((category) => (
         <div key={category.id} data-id={category.id}>
           <button onClick={() => filterBooks(category.id)}>

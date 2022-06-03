@@ -30,7 +30,7 @@ const NewBook = (props) => {
   }
 
   return (
-    <div className="rw-segment">
+    <div className="rw-segment book-form">
       <header className="rw-segment-header">
         <h2 className="rw-heading rw-heading-secondary">New Book</h2>
       </header>

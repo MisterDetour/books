@@ -4,20 +4,22 @@ import {
   FieldError,
   Label,
   TextField,
-  NumberField,
   SelectField,
   Submit,
 } from '@redwoodjs/forms'
-
-const formatDatetime = (value) => {
-  if (value) {
-    return value.replace(/:\d{2}\.\d{3}\w/, '')
-  }
-}
+import { PickerDropPane } from 'filestack-react'
+import { useState } from 'react'
 
 const BookForm = (props) => {
+  const [image, setImage] = useState(props?.image?.image)
+
   const onSubmit = (data) => {
-    props.onSave(data, props?.book?.id)
+    const dataWithUrl = Object.assign(data, { image })
+    props.onSave(dataWithUrl, props?.book?.id)
+  }
+
+  const onFileUpload = (response) => {
+    setImage(response.filesUploaded[0].url)
   }
 
   return (
@@ -47,6 +49,19 @@ const BookForm = (props) => {
 
         <FieldError name="title" className="rw-field-error" />
 
+        <PickerDropPane
+          apikey={process.env.REDWOOD_ENV_FILESTACK_API_KEY}
+          onSuccess={onFileUpload}
+        />
+
+        {image && (
+          <img
+            src={image}
+            alt="book cover"
+            style={{ marginTop: '2rem', width: '100px' }}
+          />
+        )}
+
         <Label
           name="categoryId"
           className="rw-label"
@@ -54,7 +69,11 @@ const BookForm = (props) => {
         >
           Category
         </Label>
-        <SelectField name="categoryId" defaultValue={props.book?.category.name}>
+        <SelectField
+          className="rw-input"
+          name="categoryId"
+          defaultValue={props.book?.category.name}
+        >
           {props.categories.map((category) => (
             <option key={category.id} value={category.id}>
               {category.name}

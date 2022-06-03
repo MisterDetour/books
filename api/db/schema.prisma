@@ -13,6 +13,7 @@ model Book {
   title      String
   category   Category @relation(fields: [categoryId], references: [id])
   categoryId Int
+  image      String
 }
 
 model Category {

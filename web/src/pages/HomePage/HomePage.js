@@ -2,9 +2,14 @@ import { MetaTags } from '@redwoodjs/web'
 import BookshelfCell from 'src/components/BookshelfCell'
 import AdminNav from 'src/components/AdminNav/AdminNav'
 import CategoryNavCell from 'src/components/CategoryNavCell'
+import NewBookCell from 'src/components/Book/NewBookCell'
+import { BookshelfContext } from 'src/providers/context/BookshelfContext'
+import { useContext } from 'react'
 
-// !!!!!!!!!!!!!!!!!! currently at: https://community.redwoodjs.com/t/prisma-beta-2-and-rwjs-limited-generator-support-for-relations-with-workarounds/361 - https://learn.redwoodjs.com/docs/tutorial2/adding-comments-to-the-schema
 const HomePage = () => {
+  const [context] = useContext(BookshelfContext)
+  const newBookForm = context.newBookForm
+
   return (
     <>
       <MetaTags
@@ -17,6 +22,7 @@ const HomePage = () => {
       <h1>Reading List</h1>
       <CategoryNavCell />
       <BookshelfCell />
+      {newBookForm && <NewBookCell />}
       <AdminNav />
     </>
   )

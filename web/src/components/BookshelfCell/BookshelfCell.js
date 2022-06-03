@@ -6,6 +6,7 @@ export const QUERY = gql`
     bookshelf: books {
       id
       title
+      image
       category {
         name
         id
@@ -24,18 +25,38 @@ export const Failure = ({ error }) => (
 
 export const Success = ({ bookshelf }) => {
   const bookshelfSettings = useContext(BookshelfContext)
+  const category = bookshelfSettings[0].category
+
+  // Filter books by category
+  if (category !== 0) {
+    bookshelf = bookshelf.filter(
+      (book) => book.category.id == bookshelfSettings[0].category
+    )
+  }
+
+  const thumbnail = (url) => {
+    const parts = url.split('/')
+    parts.splice(3, 0, 'resize=width:300')
+    return parts.join('/')
+  }
 
   return (
-    <ul>
-      {bookshelf
-        .filter((book) => book.category.id == bookshelfSettings[0].category)
-        .map((book) => {
-          return (
-            <li key={book.id}>
-              {book.title} - {book.category.name}
-            </li>
-          )
-        })}
+    <ul className="booklist">
+      {bookshelf.map((book) => {
+        return (
+          <li key={book.id}>
+            <a
+              href={`https://libweb.cityofalbany.net/eg/opac/results?query=${book.title}&qtype=keyword&locg=2`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src={thumbnail(book.image)} alt={book.title} width="100" />
+              <br />
+              {/* {book.title} */}
+            </a>
+          </li>
+        )
+      })}
     </ul>
   )
 }
