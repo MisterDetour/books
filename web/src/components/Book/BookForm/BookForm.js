@@ -49,10 +49,20 @@ const BookForm = (props) => {
 
         <FieldError name="title" className="rw-field-error" />
 
-        <PickerDropPane
-          apikey={process.env.REDWOOD_ENV_FILESTACK_API_KEY}
-          onSuccess={onFileUpload}
-        />
+        <Label
+          name="image"
+          className="rw-label"
+          errorClassName="rw-label rw-label-error"
+        >
+          Image
+        </Label>
+
+        <div className="drop-pane-wrapper">
+          <PickerDropPane
+            apikey={process.env.REDWOOD_ENV_FILESTACK_API_KEY}
+            onSuccess={onFileUpload}
+          />
+        </div>
 
         {image && (
           <img
@@ -84,7 +94,7 @@ const BookForm = (props) => {
         <FieldError name="categoryId" className="rw-field-error" />
 
         <div className="rw-button-group">
-          <Submit disabled={props.loading} className="rw-button rw-button-blue">
+          <Submit disabled={props.loading} className="rw-button">
             Save
           </Submit>
         </div>

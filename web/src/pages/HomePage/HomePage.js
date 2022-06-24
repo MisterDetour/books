@@ -5,6 +5,7 @@ import CategoryNavCell from 'src/components/CategoryNavCell'
 import NewBookCell from 'src/components/Book/NewBookCell'
 import { BookshelfContext } from 'src/providers/context/BookshelfContext'
 import { useContext } from 'react'
+import { Toaster } from '@redwoodjs/web/toast'
 
 const HomePage = () => {
   const [context] = useContext(BookshelfContext)
@@ -20,6 +21,7 @@ const HomePage = () => {
       />
 
       <h1>Reading List</h1>
+      <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
       <CategoryNavCell />
       <BookshelfCell />
       {newBookForm && <NewBookCell />}
