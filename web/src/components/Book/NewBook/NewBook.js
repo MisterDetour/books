@@ -18,7 +18,7 @@ const NewBook = (props) => {
   const [createBook, { loading, error }] = useMutation(CREATE_BOOK_MUTATION, {
     refetchQueries: [{ query: BookshelfQuery }],
     onCompleted: () => {
-      toast.success('Book created')
+      toast.success('Book added!')
       navigate(routes.home())
     },
     onError: (error) => {

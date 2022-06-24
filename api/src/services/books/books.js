@@ -1,3 +1,4 @@
+import * as Filestack from 'filestack-js'
 import { db } from 'src/lib/db'
 
 // https://community.redwoodjs.com/t/prisma-beta-2-and-rwjs-limited-generator-support-for-relations-with-workarounds/361
@@ -38,7 +39,26 @@ export const updateBook = ({ id, input }) => {
   })
 }
 
-export const deleteBook = ({ id }) => {
+export const deleteBook = async ({ id }) => {
+  const client = Filestack.init(process.env.REDWOOD_ENV_FILESTACK_API_KEY)
+
+  const book = await db.book.findUnique({ where: { id } })
+
+  // The `security.handle` is the unique part of the Filestack file's url.
+  const handle = book.image.split('/').pop()
+
+  const security = Filestack.getSecurity(
+    {
+      // We set `expiry` at `now() + 5 minutes`.
+      expiry: new Date().getTime() + 5 * 60 * 1000,
+      handle,
+      call: ['remove'],
+    },
+    process.env.REDWOOD_ENV_FILESTACK_SECRET
+  )
+
+  await client.remove(handle, security)
+
   return db.book.delete({
     where: { id },
   })

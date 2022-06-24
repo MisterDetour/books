@@ -94,8 +94,8 @@ const BookForm = (props) => {
         <FieldError name="categoryId" className="rw-field-error" />
 
         <div className="rw-button-group">
-          <Submit disabled={props.loading} className="rw-button">
-            Save
+          <Submit disabled={props.loading || !image} className="rw-button">
+            Add
           </Submit>
         </div>
       </Form>

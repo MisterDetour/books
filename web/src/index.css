@@ -144,9 +144,14 @@ input.error, textarea.error {
   justify-content: flex-start;
   margin: 0;
 }
-.rw-button {
+.rw-button,
+.rw-button[disabled]:hover {
   background: #BABD42;
   color: #000;
+}
+.rw-button[disabled] {
+  opacity: .3;
+  cursor: default;
 }
 .rw-button-shade {
   color: #7d8999;
