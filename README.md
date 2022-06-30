@@ -1,5 +1,4 @@
 fix any errors on admin pages due to new userId field
-test a different user
 
 Delete image if new book cancelled
 figure out better css setup
