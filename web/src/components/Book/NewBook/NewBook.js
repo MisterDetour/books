@@ -5,6 +5,7 @@ import BookForm from 'src/components/Book/BookForm'
 import { useContext } from 'react'
 import { BookshelfContext } from 'src/providers/context/BookshelfContext'
 import { QUERY as BookshelfQuery } from 'src/components/BookshelfCell'
+import { useAuth } from '@redwoodjs/auth'
 
 const CREATE_BOOK_MUTATION = gql`
   mutation CreateBookMutation($input: CreateBookInput!) {
@@ -15,8 +16,12 @@ const CREATE_BOOK_MUTATION = gql`
 `
 
 const NewBook = (props) => {
+  const { currentUser } = useAuth()
+
   const [createBook, { loading, error }] = useMutation(CREATE_BOOK_MUTATION, {
-    refetchQueries: [{ query: BookshelfQuery }],
+    refetchQueries: [
+      { query: BookshelfQuery, variables: { userId: currentUser.id } },
+    ],
     onCompleted: () => {
       toast.success('Book added!')
       navigate(routes.home())
@@ -29,6 +34,7 @@ const NewBook = (props) => {
   const onSave = (input) => {
     const castInput = Object.assign(input, {
       categoryId: parseInt(input.categoryId),
+      userId: currentUser.id,
     })
     createBook({ variables: { input: castInput } })
     hideForm()

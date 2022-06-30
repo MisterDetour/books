@@ -2,6 +2,7 @@ import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
 import { navigate, routes } from '@redwoodjs/router'
 import CategoryForm from 'src/components/Category/CategoryForm'
+import { useAuth } from '@redwoodjs/auth'
 
 const CREATE_CATEGORY_MUTATION = gql`
   mutation CreateCategoryMutation($input: CreateCategoryInput!) {
@@ -12,6 +13,8 @@ const CREATE_CATEGORY_MUTATION = gql`
 `
 
 const NewCategory = () => {
+  const { currentUser } = useAuth()
+
   const [createCategory, { loading, error }] = useMutation(
     CREATE_CATEGORY_MUTATION,
     {
@@ -26,6 +29,9 @@ const NewCategory = () => {
   )
 
   const onSave = (input) => {
+    Object.assign(input, {
+      userId: currentUser.id,
+    })
     createCategory({ variables: { input } })
   }
 

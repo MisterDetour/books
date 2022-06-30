@@ -161,3 +161,9 @@ input.error, textarea.error {
   border-color: #535c68;
   background: #2d3239;
 }
+.rw-scaffold {
+  background: transparent;
+}
+.rw-link {
+  color: #BABD42;
+}

@@ -16,8 +16,10 @@ const foreignKeyReplacement = (input) => {
   return output
 }
 
-export const books = () => {
-  return db.book.findMany()
+export const books = ({ userId }) => {
+  return db.book.findMany({
+    where: { userId },
+  })
 }
 
 export const book = ({ id }) => {

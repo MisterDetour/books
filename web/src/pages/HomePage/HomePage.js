@@ -6,10 +6,12 @@ import NewBookCell from 'src/components/Book/NewBookCell'
 import { BookshelfContext } from 'src/providers/context/BookshelfContext'
 import { useContext } from 'react'
 import { Toaster } from '@redwoodjs/web/toast'
+import { useAuth } from '@redwoodjs/auth'
 
 const HomePage = () => {
   const [context] = useContext(BookshelfContext)
   const newBookForm = context.newBookForm
+  const { currentUser } = useAuth()
 
   return (
     <>
@@ -22,9 +24,9 @@ const HomePage = () => {
 
       <h1>Reading List</h1>
       <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
-      <CategoryNavCell />
-      <BookshelfCell />
-      {newBookForm && <NewBookCell />}
+      <CategoryNavCell userId={currentUser.id} />
+      <BookshelfCell userId={currentUser.id} />
+      {newBookForm && <NewBookCell userId={currentUser.id} />}
       <AdminNav />
     </>
   )

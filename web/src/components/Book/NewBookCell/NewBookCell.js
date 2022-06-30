@@ -1,8 +1,8 @@
 import NewBook from '../NewBook/NewBook'
 
 export const QUERY = gql`
-  query categories {
-    categories {
+  query categories($userId: Int!) {
+    categories(userId: $userId) {
       name
       id
     }

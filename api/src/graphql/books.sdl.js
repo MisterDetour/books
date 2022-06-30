@@ -4,23 +4,26 @@ export const schema = gql`
     title: String!
     category: Category!
     categoryId: Int!
+    userId: Int!
     image: String
   }
 
   type Query {
-    books: [Book!]! @requireAuth
+    books(userId: Int!): [Book!]! @requireAuth
     book(id: Int!): Book @requireAuth
   }
 
   input CreateBookInput {
     title: String!
     categoryId: Int
+    userId: Int!
     image: String
   }
 
   input UpdateBookInput {
     title: String
     categoryId: Int
+    userId: Int
     image: String
   }
 

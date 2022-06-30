@@ -1,9 +1,11 @@
+import { useAuth } from '@redwoodjs/auth'
 import { Link, routes } from '@redwoodjs/router'
 import { useContext } from 'react'
 import { BookshelfContext } from 'src/providers/context/BookshelfContext'
 
 const AdminNav = () => {
   const [context, setContext] = useContext(BookshelfContext)
+  const { isAuthenticated, currentUser, logOut } = useAuth()
 
   const showForm = () => {
     setContext({ ...context, newBookForm: true })
@@ -21,6 +23,13 @@ const AdminNav = () => {
         <li>
           <Link to={routes.categories()}>Admin Categories</Link>
         </li>
+        {isAuthenticated && (
+          <li>
+            <button type="button" onClick={logOut}>
+              Logout
+            </button>
+          </li>
+        )}
       </ul>
     </nav>
   )

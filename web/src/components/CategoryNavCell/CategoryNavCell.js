@@ -1,8 +1,8 @@
 import CategoryNav from '../CategoryNav/CategoryNav'
 
 export const QUERY = gql`
-  query FindCategories {
-    categories {
+  query FindCategories($userId: Int!) {
+    categories(userId: $userId) {
       id
       name
     }

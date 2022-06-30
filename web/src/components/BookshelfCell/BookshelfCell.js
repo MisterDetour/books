@@ -2,8 +2,8 @@ import { useContext } from 'react'
 import { BookshelfContext } from 'src/providers/context/BookshelfContext'
 
 export const QUERY = gql`
-  query BookshelfQuery {
-    bookshelf: books {
+  query BookshelfQuery($userId: Int!) {
+    bookshelf: books(userId: $userId) {
       id
       title
       image

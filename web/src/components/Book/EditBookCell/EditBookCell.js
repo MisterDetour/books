@@ -5,7 +5,7 @@ import { navigate, routes } from '@redwoodjs/router'
 import BookForm from 'src/components/Book/BookForm'
 
 export const QUERY = gql`
-  query EditBookById($id: Int!) {
+  query EditBookById($id: Int!, $userId: Int!) {
     book: book(id: $id) {
       id
       title
@@ -14,7 +14,7 @@ export const QUERY = gql`
         name
       }
     }
-    categories {
+    categories(userId: $userId) {
       name
       id
     }

@@ -3,8 +3,8 @@ import { Link, routes } from '@redwoodjs/router'
 import Books from 'src/components/Book/Books'
 
 export const QUERY = gql`
-  query FindBooks {
-    books {
+  query FindBooks($userId: Int!) {
+    books(userId: $userId) {
       id
       title
       image

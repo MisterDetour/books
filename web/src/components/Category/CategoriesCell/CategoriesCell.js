@@ -3,8 +3,8 @@ import { Link, routes } from '@redwoodjs/router'
 import Categories from 'src/components/Category/Categories'
 
 export const QUERY = gql`
-  query FindCategories {
-    categories {
+  query FindCategories($userId: Int!) {
+    categories(userId: $userId) {
       id
       name
     }

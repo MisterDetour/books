@@ -1,7 +1,10 @@
+import { useAuth } from '@redwoodjs/auth'
 import EditBookCell from 'src/components/Book/EditBookCell'
 
 const EditBookPage = ({ id }) => {
-  return <EditBookCell id={id} />
+  const { currentUser } = useAuth()
+
+  return <EditBookCell id={id} userId={currentUser.id} />
 }
 
 export default EditBookPage
