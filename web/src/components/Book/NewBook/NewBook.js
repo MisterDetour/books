@@ -11,6 +11,10 @@ const CREATE_BOOK_MUTATION = gql`
   mutation CreateBookMutation($input: CreateBookInput!) {
     createBook(input: $input) {
       id
+      __typename
+      title
+      image
+      categoryId
     }
   }
 `
@@ -36,13 +40,21 @@ const NewBook = (props) => {
       categoryId: parseInt(input.categoryId),
       userId: currentUser.id,
     })
+    console.log('here: ' + input.image)
     createBook({
       variables: { input: castInput },
       optimisticResponse: {
         __typename: 'Mutation',
-        createBook: { __typename: 'Book', id: 0, input, status: 'loading' },
+        createBook: {
+          __typename: 'Book',
+          id: 0,
+          title: input.title,
+          image: input.image,
+          categoryId: input.categoryId,
+        },
       },
     })
+    console.log('there')
     hideForm()
   }
 
