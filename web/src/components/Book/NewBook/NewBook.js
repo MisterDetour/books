@@ -36,7 +36,13 @@ const NewBook = (props) => {
       categoryId: parseInt(input.categoryId),
       userId: currentUser.id,
     })
-    createBook({ variables: { input: castInput } })
+    createBook({
+      variables: { input: castInput },
+      optimisticResponse: {
+        __typename: 'Mutation',
+        createBook: { __typename: 'Book', id: 0, input, status: 'loading' },
+      },
+    })
     hideForm()
   }
 
