@@ -7,10 +7,7 @@ export const QUERY = gql`
       id
       title
       image
-      category {
-        name
-        id
-      }
+      categoryId
     }
   }
 `
@@ -30,7 +27,7 @@ export const Success = ({ bookshelf }) => {
   // Filter books by category
   if (category !== 0) {
     bookshelf = bookshelf.filter(
-      (book) => book.category.id == bookshelfSettings[0].category
+      (book) => book.categoryId == bookshelfSettings[0].category
     )
   }
 

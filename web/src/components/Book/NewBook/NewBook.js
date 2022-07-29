@@ -11,6 +11,9 @@ const CREATE_BOOK_MUTATION = gql`
   mutation CreateBookMutation($input: CreateBookInput!) {
     createBook(input: $input) {
       id
+      title
+      image
+      categoryId
     }
   }
 `
@@ -19,9 +22,28 @@ const NewBook = (props) => {
   const { currentUser } = useAuth()
 
   const [createBook, { loading, error }] = useMutation(CREATE_BOOK_MUTATION, {
+    update: (proxy, response) => {
+      const previousData = proxy.readQuery({
+        query: BookshelfQuery,
+        variables: { userId: currentUser.id },
+      })
+
+      proxy.writeQuery({
+        query: BookshelfQuery,
+        variables: { userId: currentUser.id },
+        data: {
+          ...previousData,
+          bookshelf: [response.data.createBook, ...previousData.bookshelf],
+        },
+      })
+    },
     refetchQueries: [
-      { query: BookshelfQuery, variables: { userId: currentUser.id } },
+      {
+        query: BookshelfQuery,
+        variables: { userId: currentUser.id },
+      },
     ],
+    awaitRefetchQueries: true,
     onCompleted: () => {
       toast.success('Book added!')
       navigate(routes.home())
@@ -36,7 +58,18 @@ const NewBook = (props) => {
       categoryId: parseInt(input.categoryId),
       userId: currentUser.id,
     })
-    createBook({ variables: { input: castInput } })
+    createBook({
+      variables: { input: castInput },
+      optimisticResponse: {
+        createBook: {
+          __typename: 'Book',
+          id: 0,
+          title: input.title,
+          image: input.image,
+          categoryId: input.categoryId,
+        },
+      },
+    })
     hideForm()
   }
 
