@@ -167,3 +167,8 @@ input.error, textarea.error {
 .rw-link {
   color: #BABD42;
 }
+.notice {
+  padding: 30px 0;
+  font-weight: bold;
+  color: white;
+}

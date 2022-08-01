@@ -33,7 +33,7 @@ const NewBook = (props) => {
         variables: { userId: currentUser.id },
         data: {
           ...previousData,
-          bookshelf: [response.data.createBook, ...previousData.bookshelf],
+          bookshelf: [...previousData.bookshelf, response.data.createBook],
         },
       })
     },
