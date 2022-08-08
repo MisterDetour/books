@@ -31,8 +31,8 @@ const Routes = () => {
           <Route path="/books/{id:Int}" page={BookBookPage} name="book" />
           <Route path="/books" page={BookBooksPage} name="books" />
         </Set>
-        <Route path="/" page={HomePage} name="home" />
       </Private>
+      <Route path="/" page={HomePage} name="home" />
       <Route notfound page={NotFoundPage} />
     </Router>
   )
