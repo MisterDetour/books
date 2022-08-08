@@ -10,6 +10,7 @@
 import { Set, Router, Route, Private } from '@redwoodjs/router'
 import CategoriesLayout from 'src/layouts/CategoriesLayout'
 import BooksLayout from 'src/layouts/BooksLayout'
+import Loader from './components/Loader/Loader'
 
 const Routes = () => {
   return (
@@ -18,7 +19,7 @@ const Routes = () => {
       <Route path="/signup" page={SignupPage} name="signup" />
       <Route path="/forgot-password" page={ForgotPasswordPage} name="forgotPassword" />
       <Route path="/reset-password" page={ResetPasswordPage} name="resetPassword" />
-      <Private unauthenticated="login">
+      <Private unauthenticated="login" whileLoadingAuth={Loader} whileLoadingPage={Loader}>
         <Set wrap={CategoriesLayout}>
           <Route path="/categories/new" page={CategoryNewCategoryPage} name="newCategory" />
           <Route path="/categories/{id:Int}/edit" page={CategoryEditCategoryPage} name="editCategory" />
