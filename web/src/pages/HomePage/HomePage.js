@@ -26,8 +26,8 @@ const HomePage = () => {
       <Toaster toastOptions={{ className: 'rw-toast', duration: 6000 }} />
       <CategoryNavCell userId={currentUser.id} />
       <BookshelfCell userId={currentUser.id} />
-      {/* {newBookForm && <NewBookCell userId={currentUser.id} />}
-      <AdminNav /> */}
+      {newBookForm && <NewBookCell userId={currentUser.id} />}
+      <AdminNav />
     </>
   )
 }
