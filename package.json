@@ -8,15 +8,15 @@
     ]
   },
   "devDependencies": {
-    "@redwoodjs/auth-dbauth-setup": "4.5.0",
-    "@redwoodjs/core": "^4.0.0"
+    "@redwoodjs/auth-dbauth-setup": "5.0.0",
+    "@redwoodjs/core": "5.0.0"
   },
   "eslintConfig": {
     "extends": "@redwoodjs/eslint-config",
     "root": true
   },
   "engines": {
-    "node": ">=16.x <=18.x",
+    "node": "=18.x",
     "yarn": ">=1.15 <2"
   },
   "prisma": {
