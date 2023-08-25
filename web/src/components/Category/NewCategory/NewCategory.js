@@ -1,8 +1,9 @@
+import { navigate, routes } from '@redwoodjs/router'
 import { useMutation } from '@redwoodjs/web'
 import { toast } from '@redwoodjs/web/toast'
-import { navigate, routes } from '@redwoodjs/router'
+
+import { useAuth } from 'src/auth'
 import CategoryForm from 'src/components/Category/CategoryForm'
-import { useAuth } from '@redwoodjs/auth'
 
 const CREATE_CATEGORY_MUTATION = gql`
   mutation CreateCategoryMutation($input: CreateCategoryInput!) {
