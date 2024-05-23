@@ -8,16 +8,15 @@
     ]
   },
   "devDependencies": {
-    "@redwoodjs/auth-dbauth-setup": "6.0.0",
-    "@redwoodjs/core": "6.0.0"
+    "@redwoodjs/auth-dbauth-setup": "7.6.2",
+    "@redwoodjs/core": "7.6.2"
   },
   "eslintConfig": {
     "extends": "@redwoodjs/eslint-config",
     "root": true
   },
   "engines": {
-    "node": "=18.x",
-    "yarn": ">=1.15 <2"
+    "node": "=20.x"
   },
   "prisma": {
     "seed": "yarn rw exec seed"
