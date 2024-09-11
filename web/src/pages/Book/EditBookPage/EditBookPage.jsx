@@ -1,4 +1,4 @@
-import { useAuth } from '@redwoodjs/auth'
+import { useAuth } from 'src/auth'
 import EditBookCell from 'src/components/Book/EditBookCell'
 
 const EditBookPage = ({ id }) => {

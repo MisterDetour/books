@@ -1,6 +1,8 @@
-import { useAuth } from '@redwoodjs/auth'
-import { Link, routes } from '@redwoodjs/router'
 import { useContext } from 'react'
+
+import { Link, routes } from '@redwoodjs/router'
+
+import { useAuth } from 'src/auth'
 import { BookshelfContext } from 'src/providers/context/BookshelfContext'
 
 const AdminNav = () => {

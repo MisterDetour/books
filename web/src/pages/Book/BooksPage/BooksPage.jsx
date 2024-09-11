@@ -1,4 +1,4 @@
-import { useAuth } from '@redwoodjs/auth'
+import { useAuth } from 'src/auth'
 import BooksCell from 'src/components/Book/BooksCell'
 
 const BooksPage = () => {
