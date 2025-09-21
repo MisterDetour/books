@@ -1,4 +1,5 @@
 import { useContext } from 'react'
+
 import { BookshelfContext } from 'src/providers/context/BookshelfContext'
 
 export const QUERY = gql`
@@ -31,12 +32,6 @@ export const Success = ({ bookshelf }) => {
     )
   }
 
-  const thumbnail = (url) => {
-    const parts = url.split('/')
-    parts.splice(3, 0, 'resize=width:300')
-    return parts.join('/')
-  }
-
   return (
     <ul className="booklist">
       {bookshelf.map((book) => {
@@ -47,7 +42,7 @@ export const Success = ({ bookshelf }) => {
               target="_blank"
               rel="noreferrer"
             >
-              <img src={thumbnail(book.image)} alt={book.title} width="100" />
+              <img src={book.image} alt={book.title} width="100" />
               <br />
               {/* {book.title} */}
             </a>

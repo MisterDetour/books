@@ -1,3 +1,7 @@
+import { useState } from 'react'
+
+import { PickerDropPane } from 'filestack-react'
+
 import {
   Form,
   FormError,
@@ -7,19 +11,10 @@ import {
   SelectField,
   Submit,
 } from '@redwoodjs/forms'
-import { PickerDropPane } from 'filestack-react'
-import { useState } from 'react'
 
 const BookForm = (props) => {
-  const [image, setImage] = useState(props?.image?.image)
-
   const onSubmit = (data) => {
-    const dataWithUrl = Object.assign(data, { image })
-    props.onSave(dataWithUrl, props?.book?.id)
-  }
-
-  const onFileUpload = (response) => {
-    setImage(response.filesUploaded[0].url)
+    props.onSave(data, props?.book?.id)
   }
 
   return (
@@ -56,17 +51,20 @@ const BookForm = (props) => {
         >
           Image
         </Label>
+        <div>{props.book?.image}</div>
+        <TextField
+          name="image"
+          defaulValue={props.book?.image}
+          className="rw-input"
+          errorClassName="rw-input rw-input-error"
+          validation={{ required: true }}
+        />
 
-        <div className="drop-pane-wrapper">
-          <PickerDropPane
-            apikey={process.env.REDWOOD_ENV_FILESTACK_API_KEY}
-            onSuccess={onFileUpload}
-          />
-        </div>
+        <FieldError name="image" className="rw-field-error" />
 
-        {image && (
+        {props.book?.image && (
           <img
-            src={image}
+            src={props.book?.image}
             alt="book cover"
             style={{ marginTop: '2rem', width: '100px' }}
           />
@@ -94,7 +92,7 @@ const BookForm = (props) => {
         <FieldError name="categoryId" className="rw-field-error" />
 
         <div className="rw-button-group">
-          <Submit disabled={props.loading || !image} className="rw-button">
+          <Submit disabled={props.loading} className="rw-button">
             Add
           </Submit>
         </div>
